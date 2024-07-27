@@ -1,0 +1,223 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Byte API Documentation",
+    "description": "I have no idea what the description should be.",
+    "version": "0.0.1 - BETA",
+    "contact": {
+      "email": "icmecodes@kys.gay",
+      "name": "icmecodes"
+    }
+  },
+  "paths": {
+    "/api/bypass": {
+      "get": {
+        "operationId": "getApiBypass",
+        "description": "Bypass (almost) any ad-links with ease.",
+        "parameters": [
+          {
+            "name": "link",
+            "in": "query",
+            "allowEmptyValue": false,
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The link to be bypassed."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The bypass was successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the bypass.",
+                      "example": "success"
+                    },
+                    "result": {
+                      "type": "string",
+                      "description": "The result of the bypass."
+                    },
+                    "took": {
+                      "type": "string",
+                      "description": "The time taken to complete the bypass (in seconds).",
+                      "example": "0s"
+                    },
+                    "taskId": {
+                      "type": "string",
+                      "description": "The ID of the task that was run."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The bypass failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the bypass.",
+                      "example": "error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "servers": [
+          {
+            "url": "213"
+          }
+        ],
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/api/utils/supported": {
+      "get": {
+        "operationId": "getApiUtilsSupported",
+        "description": "View all supported bypasses.",
+        "responses": {
+          "200": {
+            "description": "The supported providers.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "supported": {
+                      "type": "array",
+                      "description": "The supported providers.",
+                      "items": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/utils/formatProvider": {
+      "get": {
+        "operationId": "getApiUtilsFormatProvider",
+        "description": "Format a link to a provider.",
+        "parameters": [
+          {
+            "name": "link",
+            "in": "query",
+            "allowEmptyValue": false,
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The link for the provider to be formatted."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The formatted provider.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "result": {
+                      "type": "string",
+                      "description": "The supported providers."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/utils/getTaskResult": {
+      "get": {
+        "operationId": "getApiUtilsGetTaskResult",
+        "description": "Get the result of a task.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "allowEmptyValue": false,
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "The task ID for the result to be retrieved."
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The task result.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the task.",
+                      "example": "success"
+                    },
+                    "result": {
+                      "type": "string",
+                      "description": "The result of the task."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The task failed.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "The status of the task.",
+                      "example": "error"
+                    },
+                    "message": {
+                      "type": "string",
+                      "description": "The error message."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {}
+  }
+}
